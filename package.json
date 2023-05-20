@@ -9,13 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@lit-labs/react": "^1.1.1",
+    "@lit-labs/react": "^1.1.2-pre.0",
     "@types/node": "18.16.1",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
-    "lit": "^2.7.3",
+    "lit": "^3.0.0-pre.0",
     "next": "13.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

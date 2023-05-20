@@ -1,4 +1,4 @@
-import { Tabs, Tab } from '@/components/tab-wrapper'
+import { Tabs, Tab } from '@/components/table-wrapper'
 import Link from 'next/link'
 import React from 'react'
 

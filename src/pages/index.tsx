@@ -1,11 +1,49 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import {  Tab, Tabs } from '@/components/tab-wrapper'
-import Link from 'next/link'
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import styles from "@/styles/Home.module.css";
+// import {  MyTableComponent,MyTableCellComponent, MyTableCellHeadComponent } from '@/components/tab-wrapper'
+import Link from "next/link";
+import dynamic from "next/dynamic";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
+
+const MyTableCellHeadComponent = dynamic(
+  () =>
+    import("@/components/table-wrapper").then(
+      (c) => c.MyTableCellHeadComponent
+    ),
+  {
+    ssr: false,
+  }
+);
+const MyTableComponent = dynamic(
+  () => import("@/components/table-wrapper").then((c) => c.MyTableComponent),
+  {
+    ssr: false,
+  }
+);
+
+const MyTableCellComponent = dynamic(
+  () =>
+    import("@/components/table-wrapper").then((c) => c.MyTableCellComponent),
+  {
+    ssr: false,
+  }
+);
+
+const MyTableRowComponent = dynamic(
+  () => import("@/components/table-wrapper").then((c) => c.MyTableRowComponent),
+  {
+    ssr: false,
+  }
+);
+const MyInputComponent = dynamic(
+  () => import("@/components/table-wrapper").then((c) => c.MyInputComponent),
+  {
+    ssr: false,
+  }
+);
 
 export default function Home() {
   return (
@@ -16,17 +54,48 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <nav>
-      <button><Link href={'/Test'}>Test</Link></button>
-      </nav>
- 
+      <nav>{/* <button><Link href={'/Test'}>Test</Link></button> */}</nav>
+
+
       <main className={`${styles.main} ${inter.className}`}>
-        Default assigned props are not available in firstUpdate Component
-        <Tabs variant="test">
-          <Tab title="Tab1"></Tab>
-          <Tab title="Tab2"></Tab>
-        </Tabs>
+        <p>Please Resize browser to see the issue</p>
+        <hr />
+        <p>
+        Since I'm using cloneNode() to move elements between the desktop view and modal view when the browser window is resized and the media query hits below 600, the cloned elements are missing their attributes and states.
+        </p>
+        <MyTableComponent>
+          <MyTableRowComponent>
+            <MyTableCellHeadComponent>
+            Customer ID
+            </MyTableCellHeadComponent>
+            <MyTableCellHeadComponent>
+            Customer Name
+            </MyTableCellHeadComponent>
+            <MyTableCellHeadComponent>
+            Customer Address
+            </MyTableCellHeadComponent>
+          </MyTableRowComponent>
+
+          <MyTableRowComponent>
+            <MyTableCellComponent>
+              test
+            </MyTableCellComponent>
+            <MyTableCellComponent>
+              <MyInputComponent value="test">
+
+              </MyInputComponent>
+            </MyTableCellComponent>
+            <MyTableCellComponent>
+              test
+            </MyTableCellComponent>
+            
+          </MyTableRowComponent>
+       
+        </MyTableComponent>
+
+
+        
       </main>
     </>
-  )
+  );
 }
